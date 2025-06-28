@@ -52,6 +52,7 @@ A full-featured Personal Expense Tracker web application built using the **MEAN 
 expense-tracker/
 ├── backend/                 # Node.js + Express + MongoDB (Native)
 │   ├── routes/
+|   |── security/
 │   ├── controllers/
 │   ├── db/
 │   └── index.js
@@ -103,7 +104,7 @@ Create `.env` in `backend/` folder with the following:
 
 ```env
 PORT=3000
-MONGODB_URI=your_mongo_connection_string
+MONGODB_URI=your_mongo_connection_strin
 JWT_SECRET=your_secret_key
 ```
 

@@ -1,0 +1,102 @@
+<mat-card class="add-expense-card mat-elevation-z8">
+  
+<div>
+    <button mat-button color="primary" type="button" class="home" (click)="home()" > <mat-icon fontIcon="home" click ></mat-icon></button>
+</div>
+  
+  <h2 class="form-title"> Add New Expense</h2>
+
+  <form (ngSubmit)="onSubmit()" #expenseForm="ngForm" class="expense-form-grid">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Expense Name</mat-label>
+        <input matInput type="text" name="name" [(ngModel)]="expense.name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" name="amount" [(ngModel)]="expense.amount" required />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="expense.date" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Category</mat-label>
+        <mat-select name="category" [(ngModel)]="expense.category" required>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Payment Type</mat-label>
+        <mat-select name="paymentType" [(ngModel)]="expense.paymentType" required>
+          <mat-option *ngFor="let payment of payments" [value]="payment">
+            {{ payment }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Comments</mat-label>
+        <input matInput type="text" name="comments" [(ngModel)]="expense.comments" required/>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!expenseForm.form.valid">
+        ➕ Add Expense
+      </button>
+      <button mat-raised-button color="primary" type="button" (click)="reset()">
+        ➕ Reset
+      </button>
+    </div>
+  </form>
+
+  <mat-divider class="form-divider"></mat-divider>
+
+  <div class="csv-import-section">
+    <h3 class="csv-title">📂 Import from CSV</h3>
+
+    <input type="file" (change)="onFileSelected($event)" accept=".csv" class="csv-input" />
+
+    <div class="csv-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="upload()"
+        [disabled]="!selectedFile"
+      >
+        ⬆️ Upload CSV
+      </button>
+
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="downloadUserExpenses()"
+      >
+        📥 Download Template
+      </button>
+    </div>
+
+    <p *ngIf="message" class="success-message">{{ message }}</p>
+  </div>
+</mat-card>

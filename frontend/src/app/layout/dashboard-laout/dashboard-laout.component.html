@@ -1,0 +1,41 @@
+<div class="main" >
+
+  <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer mode="side" >
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+         <a mat-list-item  routerLinkActive="active-link" (click)="openProfile()">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </a>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="drawer.close()">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/expense" routerLinkActive="active-link" (click)="drawer.close()">
+        <mat-icon>attach_money</mat-icon>
+        <span>Add Expense</span>
+      </a>
+      <a mat-list-item (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" class="toggle-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Expense Tracker</span>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+</div>

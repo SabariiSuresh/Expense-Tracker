@@ -1,0 +1,314 @@
+.dashboard-container {
+  padding: 40px 20px;
+  min-height: 100vh;
+  animation: fadeIn 0.6s ease-in-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Summary Section */
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.summary-item {
+  background: rgb(209, 243, 255);
+  border-radius: 14px;
+  padding: 20px 28px;
+  min-width: 180px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 0.7s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 150%;
+  height: 100%;
+  background: rgba(2, 136, 209, 0.05);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.summary-item:hover::before {
+  left: 0;
+}
+
+.summary-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(2, 136, 209, 0.2);
+}
+
+.summary-item .label,
+.summary-item .value {
+  position: relative;
+  z-index: 1;
+}
+
+.summary-item .value {
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.summary-item:hover .value {
+  color: #0288d1;
+  font-size: 1.35rem;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #1976d2;
+  font-size: 24px;
+}
+
+.label {
+  font-weight: 600;
+  margin-right: 6px;
+  color: #444;
+}
+.value {
+  font-weight: bold;
+}
+
+/* Charts Section */
+.charts-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+  padding: 0 10px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  animation: slideFade 0.6s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.chart-card h3 {
+  text-align: center;
+  color: #0288d1;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  max-width: 280px;
+  height: 280px !important;
+}
+
+/* Table Section */
+
+mat-cell button {
+  margin-right: 8px;       /* Space between buttons */
+  font-size: 0.875rem;     /* Slightly smaller text */
+  padding: 6px 12px;       /* Comfortable padding */
+  min-width: 70px;         /* Consistent button width */
+  border-radius: 6px;      /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effects */
+mat-cell button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: Differentiate buttons more visually */
+mat-cell button[color="primary"] {
+  background-color: #92d9ff;
+  color: white;
+}
+
+mat-cell button[color="primary"]:hover {
+  background-color: #0277bd;
+}
+
+mat-cell button[color="warn"] {
+  background-color: #ff8f8f;
+  color: white;
+}
+
+mat-cell button[color="warn"]:hover {
+  background-color: #b71c1c;
+}
+
+
+.table-section {
+  background: white;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  animation: slideFade 0.7s ease-in-out;
+  overflow-x: auto;
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.table-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.table-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0288d1;
+  margin-bottom: 20px;
+}
+
+mat-table {
+  width: 100%;
+  min-width: 700px;
+  background-color: #ffffff;
+}/* Base styles for rows and cells */
+mat-row, mat-cell {
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for entire row and cells */
+mat-row:hover, 
+mat-row:hover mat-cell {
+  background-color: #e3f2fd; /* Light blue hover */
+  color: #0d47a1; /* Optional: change text color on hover */
+}
+
+/* Selected row and cells */
+mat-row.selected, 
+mat-row.selected mat-cell {
+  background-color: #90caf9 !important; /* Stronger blue */
+  color: #0d47a1 !important; /* Dark text for contrast */
+  font-weight: 600;
+}
+
+/* Hover effect on selected row (cells included) */
+mat-row.selected:hover, 
+mat-row.selected:hover mat-cell {
+  background-color: #64b5f6 !important; /* Slightly different blue */
+  color: #0d47a1 !important;
+}
+
+
+/* Table header row */
+mat-header-row {
+  background-color: #b8e2f9; /* Blue background */
+  color: white; /* White text */
+  font-weight: 700;
+  user-select: none;
+  cursor: default;
+  transition: background-color 0.3s ease;
+}
+
+.add-expense-button {
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Table header cells */
+mat-header-cell {
+  padding: 16px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+/* Remove border from last header cell */
+mat-header-cell:last-child {
+  border-right: none;
+}
+
+/* Optional: hover effect on header cells */
+mat-header-cell:hover {
+  background-color: #0277bd; /* Slightly darker blue */
+  cursor: pointer; /* Show pointer if header is clickable */
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    background-color: #fff;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFade {
+  0% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .charts-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .summary-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-card canvas {
+    max-width: 230px;
+    height: 230px !important;
+  }
+
+  mat-table {
+    min-width: unset;
+  }
+}
+
+

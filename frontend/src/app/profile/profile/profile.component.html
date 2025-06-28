@@ -1,0 +1,61 @@
+<div class="main">
+  <mat-card class="profile-card">
+    <h2 mat-card-title class="title">👤 My Profile</h2>
+
+    <div *ngIf="!isEdit" class="view-mode fade-in">
+      <mat-list>
+        <mat-list-item><strong>Name:</strong> {{ profile.name }}</mat-list-item>
+        <mat-list-item><strong>Username:</strong> {{ profile.userName }}</mat-list-item>
+        <mat-list-item><strong>Email:</strong> {{ profile.email }}</mat-list-item>
+      </mat-list>
+
+      <div class="button-group">
+
+        <div>
+          <button mat-raised-button color="primary" (click)="isEditOn()" class="edit-btn">
+            Edit
+          </button>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" class="edit-btn" (click)="closeDialog()">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <form *ngIf="isEdit" (ngSubmit)="onSubmit()" class="edit-mode slide-in">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="profile.name" name="name" type="text" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="profile.userName" name="username" type="text" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="profile.email" name="email" type="email" required />
+      </mat-form-field>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <div class="button-group">
+        <div>
+          <button mat-raised-button color="primary" type="submit">💾 Save</button>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" type="button" (click)="isEditOff()">❌ Cancel</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

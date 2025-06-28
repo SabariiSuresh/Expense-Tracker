@@ -1,0 +1,68 @@
+<div class="main animate-dialog">
+  <div class="head">
+    <h2 mat-dialog-title>Edit Expense</h2>
+  </div>
+
+  <mat-dialog-content class="space-y-4">
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="data.amount" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" [(ngModel)]="data.date" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="data.category" required>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Payment</mat-label>
+        <mat-select [(ngModel)]="data.paymentType" required>
+          <mat-option *ngFor="let payment of payments" [value]="payment">
+            {{ payment }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Comments</mat-label>
+        <input matInput [(ngModel)]="data.comments">
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+   <div class="form-message">
+  <div *ngIf="success" class="success">{{ success }}</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
+
+  <mat-dialog-actions align="end" class="form-actions">
+    <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Update</button>
+  </mat-dialog-actions>
+</div>

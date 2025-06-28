@@ -1,0 +1,21 @@
+<mat-dialog-content>
+  <div class="chart-container">
+    <canvas baseChart
+            [data]="data"
+            [type]="'pie'"
+            [options]="{
+              responsive: true,
+              plugins: { legend: { position: 'bottom' } }
+            }">
+    </canvas>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="navigateToAddExpense()">
+    ➕ Add Expense
+  </button>
+  <button mat-raised-button color="accent" (click)="backToHome()">
+     Back
+  </button>
+</mat-dialog-actions>

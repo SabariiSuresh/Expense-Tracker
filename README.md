@@ -122,5 +122,5 @@ JWT_SECRET=your_secret_key
 
 ## 🙋‍♂️ Author
 
-Built with  by **[Sabari Suresh]**  
-🔗 [GitHub](https://github.com/sabari-suresh1)
+ **[Sabari Suresh]**  
+🔗 [GitHub](https://github.com/SabariiSuresh)

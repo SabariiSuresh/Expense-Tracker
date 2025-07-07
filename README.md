@@ -94,7 +94,7 @@ npm install
 ng serve
 ```
 
-Visit: [http://localhost:4200](http://localhost:4200)
+Live Demo: https://expense-track-tau-two.vercel.app 
 
 ---
 

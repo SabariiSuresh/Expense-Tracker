@@ -1,15 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
 
-  private baseUrl = 'http://localhost:3000/expense';
+  private baseUrl = environment.apiUrl + '/expense';
 
-  private csvUrl = 'http://localhost:3000/csv'
+  private csvUrl = environment.apiUrl + '/csv'
   
 
   constructor(private http : HttpClient) { }

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private baseUrl = 'http://localhost:3000/profile';
+  private baseUrl = environment.apiUrl + '/profile';
 
   constructor(private http : HttpClient) { }
 

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {jwtDecode} from  'jwt-decode'
+import {jwtDecode} from  'jwt-decode';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {jwtDecode} from  'jwt-decode'
 export class AuthService {
 
  
-  private baseUrl : string ='http://localhost:3000/auth'
+ private baseUrl: string = environment.apiUrl + '/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 

@@ -14,8 +14,8 @@ let indexRoute = require('./routes/index.router');
 
 app.use( '/' , indexRoute); 
 
-connectDataBase().then( ( ) => {
-    app.listen(PORT , () => console.log(` ${PORT}`))
-}).catch( (error)=>{
-    console.error("Faild to connect database" , error)
-})
+connectDataBase().then(() => {
+  app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+}).catch((error) => {
+  console.error("Failed to connect database", error);
+});

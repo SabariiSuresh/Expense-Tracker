@@ -94,7 +94,7 @@ npm install
 ng serve
 ```
 
-Live Demo: https://expense-track-tau-two.vercel.app 
+### ▶️ Live Demo: https://expense-track-tau-two.vercel.app 
 
 ---
 

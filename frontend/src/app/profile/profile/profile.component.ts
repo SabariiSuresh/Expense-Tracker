@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../profile.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,61 +11,74 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ProfileComponent {
 
-profile = {
+  profile = {
 
-  name : '',
-  userName : '',
-  email : ''
+    name: '',
+    userName: '',
+    email: ''
 
-}
+  }
 
-isEdit = false;
-errorMessage =''
-successMessage = '';
-constructor(private profileservice : ProfileService , private dialogRef: MatDialogRef<ProfileComponent> ){}
+  isEdit = false;
+  errorMessage = ''
+  successMessage = '';
+  constructor(private profileservice: ProfileService, private dialogRef: MatDialogRef<ProfileComponent>, private router: Router) { }
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.loadProfile();
   }
 
-loadProfile(){
-  this.profileservice.getProfile().subscribe({
-    next : ( data : any )=> this.profile = data,
-    error : ()=> alert("Faild to load profile")
-  })
-}
+  loadProfile() {
+    this.profileservice.getProfile().subscribe({
+      next: (data: any) => this.profile = data,
+      error: (err) => {
 
-closeDialog() {
-    this.dialogRef.close(); 
+        if (err.status === 401) {
+          this.errorMessage = 'You must be login to view your profile';
+        } else {
+          this.errorMessage = 'Failed to load profile';
+        }
+        console.error('profile load eror', err);
+      }
+    })
   }
 
-isEditOn(){
-  this.isEdit = true;
-}
+  home() {
+    this.dialogRef.close();
+    this.router.navigate(['/dashboard']);
+  }
 
-isEditOff(){
-  this.isEdit = false;
-  this.loadProfile();
-}
+  closeDialog() {
+    this.dialogRef.close();
+  }
 
-onSubmit(){
-  this.profileservice.updateProfile(this.profile).subscribe({
-    next : ()=> {
-      this.successMessage = "Profile updated Successfully";
-       setTimeout( ()=>{
-               this.isEdit = false
-          },2000 );
-      this.errorMessage = '';
-    } ,
-    error : (err)=> {
-      this.successMessage = '';
- if (err.status === 409 && err.error?.message) {
+  isEditOn() {
+    this.isEdit = true;
+  }
+
+  isEditOff() {
+    this.isEdit = false;
+    this.loadProfile();
+  }
+
+  onSubmit() {
+    this.profileservice.updateProfile(this.profile).subscribe({
+      next: () => {
+        this.successMessage = "Profile updated Successfully";
+        setTimeout(() => {
+          this.isEdit = false
+        }, 2000);
+        this.errorMessage = '';
+      },
+      error: (err) => {
+        this.successMessage = '';
+        if (err.status === 409 && err.error?.message) {
           this.errorMessage = err.error.message;
         } else {
           this.errorMessage = err.error?.message || 'Update Failed';
         }
 
-    }
-  })
-}
+      }
+    })
+  }
 }

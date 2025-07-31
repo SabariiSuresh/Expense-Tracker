@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { CdkNoDataRow } from "@angular/cdk/table";
 
 
 
@@ -19,7 +20,8 @@ import { MatListModule } from '@angular/material/list';
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule , FormsModule , MatButtonModule , MatFormFieldModule , MatInputModule , MatCardModule , MatIconModule , MatListModule
-  ]
+    ProfileRoutingModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule, MatListModule,
+    CdkNoDataRow
+]
 })
 export class ProfileModule { }

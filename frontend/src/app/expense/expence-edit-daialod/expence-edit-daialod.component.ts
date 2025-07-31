@@ -34,7 +34,7 @@ export class ExpenceEditDaialodComponent {
       } , 
       error : (err) => {
         this.error = 'Updation Failed';
-    
+        console.error('Update error' , err);
       }
     })
 

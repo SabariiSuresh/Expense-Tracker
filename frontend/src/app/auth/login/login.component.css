@@ -1,7 +1,7 @@
 /* Center the login container */
 .auth-container {
   height: 100vh;
-  background: linear-gradient(135deg, #e3f2fd, #90caf9);
+  background: linear-gradient(135deg, #6ec3ff, #4affd2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,8 +21,10 @@
 .login-card h2 {
   text-align: center;
   margin-bottom: 24px;
-  color: #3f51b5;
+  color: #1fccbb;
   font-weight: 600;
+  font-size: 35px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .full-width {
@@ -30,37 +32,64 @@
   margin-bottom: 18px;
 }
 
-.login-btn {
-  width: 100%;
-  padding: 12px;
+button[mat-raised-button] {
+  height: 44px;
+  min-width: 250px;
   font-weight: bold;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: transparent;
+  color: black;
+  border: 2px solid #1fccbb;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 20px auto;
+}
+
+button[mat-raised-button]:hover {
+  background: #7ffdf0;
+  color: #000;
+  transform: scale(1.05);
+}
+
+
+.error {
+  color: #c62828;
+}
+
+.success{
+  color: #2df76a;
+}
+
+.message {
+  text-align: center;
   font-size: 16px;
-  margin-top: 12px;
-  transition: transform 0.3s ease;
-}
-
-.login-btn:hover {
-  transform: scale(1.02);
-}
-
-.message-container {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-
-.success-message {
-  color: rgb(24, 180, 24);
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: #d32f2f;
-  text-align: center;
-  margin-bottom: 12px;
-  text-align: center;
+  margin-bottom: 16px;
   font-weight: 500;
+}
+
+.message.success {
+  border-left: 6px solid #14bb54;
+}
+
+.message.error {
+  border-left: 6px solid #f44336;
+}
+
+.message {
+  top: 35px;
+  right: 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  background: whitesmoke;
+  animation: fadeIn 0.5s ease-in;
+  backdrop-filter: blur(8px);
+  color: #000;
 }
 
 .register-text {
@@ -71,7 +100,7 @@
 }
 
 .register-text a {
-  color: #3f51b5;
+  color: #0bb798;
   text-decoration: none;
   font-weight: 500;
 }
@@ -86,6 +115,7 @@
     opacity: 0;
     background-color: #fff;
   }
+
   to {
     opacity: 1;
   }
@@ -96,6 +126,7 @@
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;

@@ -2,26 +2,42 @@
   <mat-card class="profile-card">
     <h2 mat-card-title class="title">👤 My Profile</h2>
 
+
     <div *ngIf="!isEdit" class="view-mode fade-in">
-      <mat-list>
-        <mat-list-item><strong>Name:</strong> {{ profile.name }}</mat-list-item>
-        <mat-list-item><strong>Username:</strong> {{ profile.userName }}</mat-list-item>
-        <mat-list-item><strong>Email:</strong> {{ profile.email }}</mat-list-item>
-      </mat-list>
+      <ng-container *ngIf="!errorMessage; else errorBlock">
 
-      <div class="button-group">
+        <mat-list>
+          <mat-list-item><strong>Name:</strong> {{ profile.name }}</mat-list-item>
+          <mat-list-item><strong>Username:</strong> {{ profile.userName }}</mat-list-item>
+          <mat-list-item><strong>Email:</strong> {{ profile.email }}</mat-list-item>
+        </mat-list>
 
-        <div>
-          <button mat-raised-button color="primary" (click)="isEditOn()" class="edit-btn">
-            Edit
-          </button>
+        <div class="button-group">
+
+          <div>
+            <button mat-raised-button color="primary" (click)="isEditOn()" class="edit-btn">
+              Edit
+            </button>
+          </div>
+          <div>
+            <button mat-raised-button color="primary" class="edit-btn" (click)="closeDialog()">Close</button>
+          </div>
         </div>
-        <div>
-          <button mat-raised-button color="primary" class="edit-btn" (click)="closeDialog()">Close</button>
-        </div>
+
+      </ng-container>
+    </div>
+
+    <ng-template #errorBlock>
+      <div class="message error">
+        {{errorMessage}}
       </div>
 
-    </div>
+      <div>
+        <button mat-button color="primary" type="button" (click)="home()"> <mat-icon fontIcon="home"
+            click></mat-icon>Back to home</button>
+      </div>
+
+    </ng-template>
 
 
     <form *ngIf="isEdit" (ngSubmit)="onSubmit()" class="edit-mode slide-in">
@@ -40,11 +56,11 @@
         <input matInput [(ngModel)]="profile.email" name="email" type="email" required />
       </mat-form-field>
 
-      <div *ngIf="errorMessage" class="error-message">
+      <div *ngIf="errorMessage" class="message error">
         {{ errorMessage }}
       </div>
 
-      <div *ngIf="successMessage" class="success-message">
+      <div *ngIf="successMessage" class="message success">
         {{ successMessage }}
       </div>
 

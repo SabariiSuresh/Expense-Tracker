@@ -14,22 +14,43 @@
   background-color: #ffffff;
 }
 
-.error-message,
-.success-message {
+.message {
   text-align: center;
+  font-size: 16px;
+  margin-bottom: 16px;
   font-weight: 500;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
-.error-message {
-  color: #d32f2f;
+.success {
+  color: #2e7d32;
 }
 
-.success-message {
-  color: #388e3c;
+.error {
+  color: #c62828;
 }
 
+.message {
+  top: 20px;
+  right: 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+  backdrop-filter: blur(8px);
+  color: black;
+}
+
+.message.success {
+  border-left: 6px solid #4caf50;
+}
+
+.message.error {
+  border-left: 6px solid #f44336;
+}
 
 
 

@@ -78,15 +78,38 @@
   padding: 24px;
   animation: slideFadeIn 0.6s ease-in-out;
   background-color: #fefefe;
-  min-height: calc(100vh - 64px); /* minus toolbar height */
+  min-height: calc(100vh - 64px); 
   box-sizing: border-box;
   overflow-y: auto;
 }
 
-/* Router-outlet animation wrapper */
 .animated-router {
   animation: fadeIn 0.8s ease-in;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.menu{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 35px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.login{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: black;
+}
+
 
 /* Animations */
 @keyframes fadeIn {

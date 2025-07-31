@@ -1,41 +1,54 @@
-<div class="main" >
+<div class="main">
 
   <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer mode="side" >
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list>
-         <a mat-list-item  routerLinkActive="active-link" (click)="openProfile()">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </a>
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="drawer.close()">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </a>
-      <a mat-list-item routerLink="/expense" routerLinkActive="active-link" (click)="drawer.close()">
-        <mat-icon>attach_money</mat-icon>
-        <span>Add Expense</span>
-      </a>
-      <a mat-list-item (click)="logOut()">
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+    <mat-sidenav #drawer mode="side" >
+      <mat-toolbar color="primary" class="menu">Menu</mat-toolbar>
+      <mat-nav-list>
 
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="drawer.toggle()" class="toggle-button">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Expense Tracker</span>
-    </mat-toolbar>
+        <a mat-list-item routerLinkActive="active-link" (click)="openProfile()">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </a>
 
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="drawer.close()">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
+
+        <a mat-list-item routerLink="/expense" routerLinkActive="active-link" (click)="drawer.close()">
+          <mat-icon>attach_money</mat-icon>
+          <span>Add Expense</span>
+        </a>
+
+        <a *ngIf="isLoggedIn" mat-list-item (click)="logOut()" (click)="drawer.close()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="drawer.toggle()" class="toggle-button">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Expense Tracker</span>
+
+        <span class="spacer"></span>
+
+        <div *ngIf="!isLoggedIn" class="login" (click)="login()">
+          <mat-icon>login</mat-icon>
+          Login
+        </div>
+
+      </mat-toolbar>
+
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 
 </div>

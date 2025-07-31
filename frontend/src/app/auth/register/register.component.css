@@ -1,6 +1,6 @@
 .auth-container {
   height: 100vh;
-  background: linear-gradient(135deg, #e1f5fe, #81d4fa);
+  background: linear-gradient(135deg, #6ec3ff, #4affd2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,8 +20,10 @@
 .register-card h2 {
   text-align: center;
   margin-bottom: 24px;
-  color: #0288d1;
+  color: #1fccbb;
   font-weight: 600;
+  font-size: 35px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .full-width {
@@ -29,42 +31,65 @@
   margin-bottom: 18px;
 }
 
-.register-btn {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
+button[mat-raised-button] {
+  height: 44px;
+  min-width: 300px;
   font-weight: bold;
-  margin-top: 12px;
-  transition: transform 0.3s ease;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: transparent;
+  color: black;
+  border: 2px solid #1fccbb;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 20px auto;
 }
 
-.register-btn:hover {
-  transform: scale(1.02);
-}
-
-.error-message,
-.success-message {
-  text-align: center;
-  font-weight: 500;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: #d32f2f;
-}
-
-.success-message {
-  color: #388e3c;
+button[mat-raised-button]:hover {
+  background: #7ffdf0;
+  color: #000;
+  transform: scale(1.05);
 }
 
 .error {
-  display: block;
-  color: #e53935;
-  font-size: 13px;
-  margin-left: 4px;
-  margin-bottom: 3px;
+  color: #c62828;
 }
+
+.success{
+  color: #2df76a;
+}
+
+.message {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.message.success {
+  border-left: 6px solid #14bb54;
+}
+
+.message.error {
+  border-left: 6px solid #f44336;
+}
+
+.message {
+  top: 35px;
+  right: 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  background: whitesmoke;
+  animation: fadeIn 0.5s ease-in;
+  backdrop-filter: blur(8px);
+  color: #000;
+}
+
 
 .login-text {
   margin-top: 20px;
@@ -73,7 +98,7 @@
 }
 
 .login-text a {
-  color: #0288d1;
+  color: #0bb798;
   text-decoration: none;
   font-weight: 500;
 }

@@ -2,21 +2,21 @@
   <div class="register-card">
     <h2>📝 Register Here</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" type="text" />
         <mat-error *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched">
           Name is required
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
         <input matInput formControlName="userName" type="text" />
         <mat-error *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
           Username is required
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="text" />
         <mat-error *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
@@ -24,7 +24,7 @@
           <span *ngIf="registerForm.controls['email'].errors?.['pattern']">Enter valid email format</span>
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
         <input matInput formControlName="password" type="password" />
         <mat-error *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
@@ -48,10 +48,10 @@
           - Password must contain at least one special character.
         </span>
       </ng-container>
-      <div *ngIf="errorMessage" class="error-message">
+      <div *ngIf="errorMessage" class="message error">
         {{ errorMessage }}
       </div>
-      <div *ngIf="successMessage" class="success-message">
+      <div *ngIf="successMessage" class="message success">
         {{ successMessage }}
       </div>
       <button mat-raised-button color="primary" type="submit" class="register-btn" [disabled]="registerForm.invalid">

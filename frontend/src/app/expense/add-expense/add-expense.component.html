@@ -53,11 +53,11 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="errorMessage" class="error-message">
+    <div *ngIf="errorMessage" class="message error">
         {{ errorMessage }}
       </div>
 
-      <div *ngIf="successMessage" class="success-message">
+      <div *ngIf="successMessage" class="message success">
         {{ successMessage }}
       </div>
 
@@ -97,6 +97,6 @@
       </button>
     </div>
 
-    <p *ngIf="message" class="success-message">{{ message }}</p>
+    <p *ngIf="message" class="message success">{{ message }}</p>
   </div>
 </mat-card>

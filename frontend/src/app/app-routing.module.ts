@@ -5,16 +5,15 @@ import { DashboardLaoutComponent } from './layout/dashboard-laout/dashboard-laou
 import { WildcardComponent } from './wildcard/wildcard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule) },
   {
-    path: '', component: DashboardLaoutComponent, canActivate: [AuthGuard],
+    path: '', component: DashboardLaoutComponent,
 
     children: [
-      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule), canActivate: [AuthGuard] },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)},
       { path: 'expense', loadChildren: () => import('./expense/expense.module').then(m => m.ExpenseModule), canActivate: [AuthGuard] },
-      { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule), canActivate: [AuthGuard] },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule), canActivate: [AuthGuard] }
     ]
   },
   { path : '**' , component : WildcardComponent }

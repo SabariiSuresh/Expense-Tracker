@@ -23,13 +23,15 @@ export class OverviewComponent implements OnInit {
   lastDate: string | null = null;
   totalAmount: number = 0;
   totalCount: number = 0;
-  showAddExpenseButton : boolean = false;
+  showAddExpenseButton: boolean = false;
+
+  errorMessage = '';
 
   pieChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [{ data: [] }] };
   barChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [{ label: 'Expenses', data: [] }] };
   pieChartLabels: any;
 
-  constructor(private dashboardService: DashboardService, private dialog: MatDialog , private router : Router  , private snackBar : MatSnackBar) { }
+  constructor(private dashboardService: DashboardService, private dialog: MatDialog, private router: Router, private snackBar: MatSnackBar) { }
 
   dataSource = new MatTableDataSource<any>();
 
@@ -47,37 +49,40 @@ export class OverviewComponent implements OnInit {
       next: (data) => {
         this.summary = data;
 
-        if(data.length === 0){
+        if (data.length === 0) {
 
           this.pieChartData = {
-            labels : ['No Data'],
-            datasets : [{data : [1] , backgroundColor : ['#e0e0e0'] }]
+            labels: ['No Data'],
+            datasets: [{ data: [1], backgroundColor: ['#e0e0e0'] }]
           }
 
         } else {
-        const labels = data.map((item: { category: any; }) => item.category);
-        const values = data.map((item: { total: any; }) => item.total);
-        this.pieChartData = { labels, datasets: [{ data: values }] };
+          const labels = data.map((item: { category: any; }) => item.category);
+          const values = data.map((item: { total: any; }) => item.total);
+          this.pieChartData = { labels, datasets: [{ data: values }] };
         }
       },
-        error: () => {
-      this.pieChartData = {
-        labels: ['Error'],
-        datasets: [{ data: [1], backgroundColor: ['#ffcdd2'] }]
-      };
-    }
+      error: () => {
+        this.pieChartData = {
+          labels: ['Error'],
+          datasets: [{ data: [1], backgroundColor: ['#ffcdd2'] }]
+        };
+      }
     });
   }
 
   loadStatus() {
     this.dashboardService.getStatus().subscribe({
       next: (data) => {
-        this.firstDate = data.firstDate ? new Date(data.firstDate).toLocaleDateString() :  '';
-        this.lastDate = data.lastDate ? new Date(data.lastDate).toLocaleDateString() :  '';
+        this.firstDate = data.firstDate ? new Date(data.firstDate).toLocaleDateString() : '';
+        this.lastDate = data.lastDate ? new Date(data.lastDate).toLocaleDateString() : '';
         this.totalAmount = data.totalAmount;
         this.totalCount = data.totalCount;
       },
-      error: () => alert("Failed to load expense status")
+      error: (err) => {
+        this.errorMessage = 'Login to load expenses';
+        console.error('Failed to fetch expenses.', err);
+      }
     });
   }
 
@@ -85,33 +90,33 @@ export class OverviewComponent implements OnInit {
     this.dashboardService.getMonthlySummary().subscribe({
       next: (data) => {
 
-        if(data.length === 0){
+        if (data.length === 0) {
 
           this.barChartData = {
-            labels : ['No Data'],
-            datasets : [{ label : 'Monthely Expenses' , data : [0] , backgroundColor : ['#e0e0e0'] }]
+            labels: ['No Data'],
+            datasets: [{ label: 'Monthely Expenses', data: [0], backgroundColor: ['#e0e0e0'] }]
           }
         } else {
 
-           const labels = data.map((item: { month: string }) => {
-          if (!item.month || !item.month.includes('-')) return 'Unknown';
-          const [year, month] = item.month.split('-');
-          return new Date(+year, +month - 1).toLocaleString('default', { month: 'short', year: 'numeric' });
-        });
+          const labels = data.map((item: { month: string }) => {
+            if (!item.month || !item.month.includes('-')) return 'Unknown';
+            const [year, month] = item.month.split('-');
+            return new Date(+year, +month - 1).toLocaleString('default', { month: 'short', year: 'numeric' });
+          });
 
-        const values = data.map((item: { total: number }) => item.total);
-        this.barChartData = {
-          labels,
-          datasets: [{ label: 'Monthly Expenses', data: values }]
-        };
+          const values = data.map((item: { total: number }) => item.total);
+          this.barChartData = {
+            labels,
+            datasets: [{ label: 'Monthly Expenses', data: values }]
+          };
         }
       },
       error: () => {
-      this.barChartData = {
-        labels: ['Error'],
-        datasets: [{ label: 'Monthly Expenses', data: [0], backgroundColor: ['#ffcdd2'] }]
-      };
-    }
+        this.barChartData = {
+          labels: ['Error'],
+          datasets: [{ label: 'Monthly Expenses', data: [0], backgroundColor: ['#ffcdd2'] }]
+        };
+      }
     })
   }
   public chartOptions = {
@@ -121,22 +126,22 @@ export class OverviewComponent implements OnInit {
   expenses: any[] = [];
   editingExpense: any = null;
   displayedColumns: string[] = ['name', 'amount', 'date', 'category', 'payment', 'comments', 'actions'];
-    ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
- onPieChartClick(event: any) {
-  if (event.active?.length > 0) {
-    this.dialog.open(DashboardpieDialogComponent, {
-      width: '400px',
-      disableClose: true,
-      data: this.pieChartData 
-    });
-     this.showAddExpenseButton = false
+  onPieChartClick(event: any) {
+    if (event.active?.length > 0) {
+      this.dialog.open(DashboardpieDialogComponent, {
+        width: '400px',
+        disableClose: true,
+        data: this.pieChartData
+      });
+      this.showAddExpenseButton = false
+    }
   }
-}
 
-  navigateToAddExpense(){
+  navigateToAddExpense() {
     this.router.navigate(['/expense/addExpense'])
   }
 
@@ -146,30 +151,33 @@ export class OverviewComponent implements OnInit {
         this.expenses = data;
         this.dataSource.data = data;
       },
-      error: () => alert("Failed to load expenses")
+      error: (err) => {
+        this.errorMessage = 'Login to get expenses';
+        console.error('Failed to fetch expense' , err);
+      }
     });
   }
 
-deleteExpense(id: string) {
-  const snackBarRef = this.snackBar.open('Are you sure you want to delete this expense ? ', 'Yes',  { 
-    duration: 5000,
-  });
-
-  snackBarRef.onAction().subscribe(() => {
-    this.dashboardService.deleteExpense(id).subscribe({
-      next: () => {
-        this.snackBar.open('Expense deleted','Close');
-          this.loadExpenses();
-            this.loadSummary();
-            this.loadMonthlySummary();
-            this.loadStatus();
-      },
-      error: () => {
-        this.snackBar.open(' Delete failed', 'Close', { duration: 300 });
-      }
+  deleteExpense(id: string) {
+    const snackBarRef = this.snackBar.open('Are you sure you want to delete this expense ? ', 'Yes', {
+      duration: 5000,
     });
-  });
-}
+
+    snackBarRef.onAction().subscribe(() => {
+      this.dashboardService.deleteExpense(id).subscribe({
+        next: () => {
+          this.snackBar.open('Expense deleted', 'Close');
+          this.loadExpenses();
+          this.loadSummary();
+          this.loadMonthlySummary();
+          this.loadStatus();
+        },
+        error: () => {
+          this.snackBar.open(' Delete failed', 'Close', { duration: 300 });
+        }
+      });
+    });
+  }
 
   editExpense(expense: any) {
     const editableData = {

@@ -6,6 +6,37 @@
 }
 
 
+.error {
+  color: #c62828;
+}
+
+.message {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.message.error {
+  border-left: 6px solid #f44336;
+}
+
+.message {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+  backdrop-filter: blur(8px);
+  color: #000;
+}
+
+
 /* Summary Section */
 .summary-cards {
   display: flex;
@@ -14,6 +45,7 @@
   justify-content: center;
   margin-bottom: 40px;
 }
+
 .summary-item {
   background: rgb(209, 243, 255);
   border-radius: 14px;
@@ -76,6 +108,7 @@
   margin-right: 6px;
   color: #444;
 }
+
 .value {
   font-weight: bold;
 }
@@ -123,11 +156,16 @@
 /* Table Section */
 
 mat-cell button {
-  margin-right: 8px;       /* Space between buttons */
-  font-size: 0.875rem;     /* Slightly smaller text */
-  padding: 6px 12px;       /* Comfortable padding */
-  min-width: 70px;         /* Consistent button width */
-  border-radius: 6px;      /* Rounded corners */
+  margin-right: 8px;
+  /* Space between buttons */
+  font-size: 0.875rem;
+  /* Slightly smaller text */
+  padding: 6px 12px;
+  /* Comfortable padding */
+  min-width: 70px;
+  /* Consistent button width */
+  border-radius: 6px;
+  /* Rounded corners */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -185,39 +223,49 @@ mat-table {
   width: 100%;
   min-width: 700px;
   background-color: #ffffff;
-}/* Base styles for rows and cells */
-mat-row, mat-cell {
+}
+
+/* Base styles for rows and cells */
+mat-row,
+mat-cell {
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Hover effect for entire row and cells */
-mat-row:hover, 
+mat-row:hover,
 mat-row:hover mat-cell {
-  background-color: #e3f2fd; /* Light blue hover */
-  color: #0d47a1; /* Optional: change text color on hover */
+  background-color: #e3f2fd;
+  /* Light blue hover */
+  color: #0d47a1;
+  /* Optional: change text color on hover */
 }
 
 /* Selected row and cells */
-mat-row.selected, 
+mat-row.selected,
 mat-row.selected mat-cell {
-  background-color: #90caf9 !important; /* Stronger blue */
-  color: #0d47a1 !important; /* Dark text for contrast */
+  background-color: #90caf9 !important;
+  /* Stronger blue */
+  color: #0d47a1 !important;
+  /* Dark text for contrast */
   font-weight: 600;
 }
 
 /* Hover effect on selected row (cells included) */
-mat-row.selected:hover, 
+mat-row.selected:hover,
 mat-row.selected:hover mat-cell {
-  background-color: #64b5f6 !important; /* Slightly different blue */
+  background-color: #64b5f6 !important;
+  /* Slightly different blue */
   color: #0d47a1 !important;
 }
 
 
 /* Table header row */
 mat-header-row {
-  background-color: #b8e2f9; /* Blue background */
-  color: white; /* White text */
+  background-color: #b8e2f9;
+  /* Blue background */
+  color: white;
+  /* White text */
   font-weight: 700;
   user-select: none;
   cursor: default;
@@ -231,8 +279,15 @@ mat-header-row {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 
@@ -251,8 +306,10 @@ mat-header-cell:last-child {
 
 /* Optional: hover effect on header cells */
 mat-header-cell:hover {
-  background-color: #0277bd; /* Slightly darker blue */
-  cursor: pointer; /* Show pointer if header is clickable */
+  background-color: #0277bd;
+  /* Slightly darker blue */
+  cursor: pointer;
+  /* Show pointer if header is clickable */
 }
 
 
@@ -262,6 +319,7 @@ mat-header-cell:hover {
     opacity: 0;
     background-color: #fff;
   }
+
   to {
     opacity: 1;
   }
@@ -272,6 +330,7 @@ mat-header-cell:hover {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -283,6 +342,7 @@ mat-header-cell:hover {
     transform: translateY(25px);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -310,5 +370,3 @@ mat-header-cell:hover {
     min-width: unset;
   }
 }
-
-
